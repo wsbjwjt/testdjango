@@ -37,11 +37,13 @@ def getform(request):
     #
     #     user_message.save()
 
-    all_message = UserMessage.objects.filter(name='wjt', address='北京')
+    message = None
 
-    for message in all_message:
+    all_message = UserMessage.objects.filter(name='wsbjwjt', email='wsbjwjt@foxmail.com')
 
-        print(message.name)
-        all_message.delete()
+    if all_message:
+        message = all_message[0]
 
-    return render(request, 'message_form.html')
+    return render(request, 'message_form.html', {
+        "my_message": message
+    })
